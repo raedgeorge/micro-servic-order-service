@@ -1,9 +1,5 @@
 package com.atech.ms.orderservice.web.model;
 
-/**
- * @author raed abu Sa'da
- * on 28/07/2022
- */
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,15 +8,26 @@ import lombok.NoArgsConstructor;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
-
+/**
+ * @author raed abu Sa'da
+ * on 28/07/2022
+ */
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class BeerOrderDto extends BaseItem {
 
     @Builder
-    public BeerOrderDto(UUID id, Integer version, OffsetDateTime createdDate, OffsetDateTime lastModifiedDate, UUID customerId, List<BeerOrderLineDto> beerOrderLines,
-                        OrderStatusEnum orderStatus, String orderStatusCallbackUrl, String customerRef) {
+    public BeerOrderDto(UUID id,
+                        Integer version,
+                        OffsetDateTime createdDate,
+                        OffsetDateTime lastModifiedDate,
+                        UUID customerId,
+                        List<BeerOrderLineDto> beerOrderLines,
+                        OrderStatusEnum orderStatus,
+                        String orderStatusCallbackUrl,
+                        String customerRef) {
+
         super(id, version, createdDate, lastModifiedDate);
         this.customerId = customerId;
         this.beerOrderLines = beerOrderLines;

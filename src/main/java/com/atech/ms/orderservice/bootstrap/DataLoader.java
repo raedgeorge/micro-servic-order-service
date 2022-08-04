@@ -3,6 +3,7 @@ package com.atech.ms.orderservice.bootstrap;
 import com.atech.ms.orderservice.domain.Customer;
 import com.atech.ms.orderservice.repositories.CustomerRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,7 @@ import java.util.UUID;
  * @author raed abu Sa'da
  * on 28/07/2022
  */
+@Slf4j
 @RequiredArgsConstructor
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -30,10 +32,12 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadCustomerData() {
         if (customerRepository.count() == 0) {
-            customerRepository.save(Customer.builder()
+            Customer savedCustomer = customerRepository.save(Customer.builder()
                     .customerName(TASTING_ROOM)
                     .apiKey(UUID.randomUUID())
                     .build());
+
+            log.debug("tasting room customer Id : " + savedCustomer.getId().toString());
         }
     }
 }

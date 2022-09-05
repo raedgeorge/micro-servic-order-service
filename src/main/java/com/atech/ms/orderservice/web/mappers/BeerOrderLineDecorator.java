@@ -3,7 +3,7 @@ package com.atech.ms.orderservice.web.mappers;
 import com.atech.ms.orderservice.domain.BeerOrderLine;
 import com.atech.ms.orderservice.services.beer.BeerDto;
 import com.atech.ms.orderservice.services.beer.BeerService;
-import com.atech.ms.orderservice.web.model.BeerOrderLineDto;
+import com.atech.brewery.model.BeerOrderLineDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

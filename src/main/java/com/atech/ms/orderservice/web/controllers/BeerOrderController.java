@@ -1,12 +1,15 @@
 package com.atech.ms.orderservice.web.controllers;
 
+import com.atech.brewery.model.CustomerDto;
 import com.atech.ms.orderservice.services.BeerOrderService;
-import com.atech.ms.orderservice.web.model.BeerOrderDto;
-import com.atech.ms.orderservice.web.model.BeerOrderPagedList;
+import com.atech.brewery.model.BeerOrderDto;
+import com.atech.brewery.model.BeerOrderPagedList;
+import com.atech.ms.orderservice.services.CustomerService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -22,9 +25,12 @@ public class BeerOrderController {
     private static final Integer DEFAULT_PAGE_SIZE = 25;
 
     private final BeerOrderService beerOrderService;
+    private final CustomerService customerService;
 
-    public BeerOrderController(BeerOrderService beerOrderService) {
+    public BeerOrderController(BeerOrderService beerOrderService,
+                               CustomerService customerService) {
         this.beerOrderService = beerOrderService;
+        this.customerService = customerService;
     }
 
     @GetMapping("orders")
@@ -58,5 +64,11 @@ public class BeerOrderController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void pickupOrder(@PathVariable("customerId") UUID customerId, @PathVariable("orderId") UUID orderId){
         beerOrderService.pickupOrder(customerId, orderId);
+    }
+
+    @GetMapping("/list")
+    public List<CustomerDto> getAllCustomers(@PathVariable UUID customerId){
+
+        return customerService.getAllCustomers();
     }
 }

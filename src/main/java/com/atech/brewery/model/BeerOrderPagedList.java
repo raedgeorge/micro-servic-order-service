@@ -1,4 +1,4 @@
-package com.atech.ms.orderservice.web.model;
+package com.atech.brewery.model;
 
 /**
  * @author raed abu Sa'da

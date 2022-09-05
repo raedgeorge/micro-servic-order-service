@@ -2,12 +2,12 @@ package com.atech.ms.orderservice.services;
 
 import com.atech.ms.orderservice.domain.BeerOrder;
 import com.atech.ms.orderservice.domain.Customer;
-import com.atech.ms.orderservice.domain.OrderStatusEnum;
+import com.atech.ms.orderservice.domain.BeerOrderStatusEnum;
 import com.atech.ms.orderservice.repositories.BeerOrderRepository;
 import com.atech.ms.orderservice.repositories.CustomerRepository;
 import com.atech.ms.orderservice.web.mappers.BeerOrderMapper;
-import com.atech.ms.orderservice.web.model.BeerOrderDto;
-import com.atech.ms.orderservice.web.model.BeerOrderPagedList;
+import com.atech.brewery.model.BeerOrderDto;
+import com.atech.brewery.model.BeerOrderPagedList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -72,7 +72,7 @@ public class BeerOrderServiceImpl implements BeerOrderService {
             BeerOrder beerOrder = beerOrderMapper.dtoToBeerOrder(beerOrderDto);
             beerOrder.setId(null); //should not be set by outside client
             beerOrder.setCustomer(customerOptional.get());
-            beerOrder.setOrderStatus(OrderStatusEnum.NEW);
+            beerOrder.setOrderStatus(BeerOrderStatusEnum.NEW);
 
             beerOrder.getBeerOrderLines().forEach(line -> line.setBeerOrder(beerOrder));
 
@@ -97,7 +97,7 @@ public class BeerOrderServiceImpl implements BeerOrderService {
     @Override
     public void pickupOrder(UUID customerId, UUID orderId) {
         BeerOrder beerOrder = getOrder(customerId, orderId);
-        beerOrder.setOrderStatus(OrderStatusEnum.PICKED_UP);
+        beerOrder.setOrderStatus(BeerOrderStatusEnum.PICKED_UP);
 
         beerOrderRepository.save(beerOrder);
     }

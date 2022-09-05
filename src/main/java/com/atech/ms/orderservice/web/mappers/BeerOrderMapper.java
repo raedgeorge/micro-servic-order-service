@@ -1,7 +1,7 @@
 package com.atech.ms.orderservice.web.mappers;
 
 import com.atech.ms.orderservice.domain.BeerOrder;
-import com.atech.ms.orderservice.web.model.BeerOrderDto;
+import com.atech.brewery.model.BeerOrderDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -10,7 +10,8 @@ import org.mapstruct.Mapping;
  * on 28/07/2022
  */
 
-@Mapper(uses = {DateMapper.class, BeerOrderLineMapper.class})
+//@Mapper(uses = {DateMapper.class, BeerOrderLineMapper.class})
+@Mapper
 public interface BeerOrderMapper {
 
     @Mapping(target = "customerId", source = "customer.id")
